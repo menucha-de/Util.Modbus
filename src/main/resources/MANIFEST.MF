@@ -1,0 +1,11 @@
+Bundle-Name: Modbus
+Bundle-SymbolicName: havis.util.modbus
+Bundle-Version: 2.7.0
+Implementation-Version: 2.7
+Bundle-ManifestVersion: 2
+Bundle-Vendor: HARTING IT_SD
+Havis-Bundle: 
+ /OSGI-INF/havis.util.modbus.properties
+Export-Package: 
+ havis.util.modbus,
+ havis.util.modbus.slave

@@ -1,0 +1,6 @@
+Package: @Bundle-SymbolicName@
+Version: @Bundle-Version@
+Architecture: @ARCH@
+Maintainer: @Bundle-Vendor@
+Depends: libmodbus5
+Description: @Bundle-Name@

@@ -1,0 +1,7 @@
+/target
+/*.log
+/build.properties
+/lib
+/.metadata
+/.settings
+/coverage-report

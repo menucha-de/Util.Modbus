@@ -1,0 +1,10 @@
+Source: libjava-modbus
+Maintainer: HARTING IT_SD <opensource@HARTING.com>
+Build-Depends: debhelper, cmake, swig, libmodbus-dev, pkg-config, openjdk-11-jdk-headless:amd64, default-jdk:amd64, ant:all, ivy:all, libjsch-java:all
+
+Package: libjava-modbus
+Architecture: any
+Depends: libmodbus5
+Description: Modbus JNI
+Section: java
+Priority: optional

@@ -1,0 +1,45 @@
+# (original version from debian package dpkg-cross (http://emdebian.org/tools/debian/))
+cmake_minimum_required(VERSION 3.0)
+
+# load properties
+include(cmake.properties OPTIONAL)
+
+# set target system name
+SET (CMAKE_SYSTEM_NAME Linux)
+
+#set compiler name
+SET (CMAKE_C_COMPILER $ENV{DEB_HOST_GNU_TYPE}-gcc)
+SET (CMAKE_CXX_COMPILER $ENV{DEB_HOST_GNU_TYPE}-g++)
+
+#set path(s) to search for libraries/binaries/headers
+SET (CMAKE_FIND_ROOT_PATH
+  /usr/$ENV{DEB_HOST_GNU_TYPE}
+  /usr/lib/$ENV{DEB_HOST_GNU_TYPE}
+  /usr/include/$ENV{DEB_HOST_GNU_TYPE}
+  /usr
+  /usr/lib
+  /usr/include
+)
+# ensure only cross-dirs are searched
+SET (ONLY_CMAKE_FIND_ROOT_PATH TRUE)
+# search for programs in the build host directories
+SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+# for libraries and headers in the target directories
+SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+IF (CMAKE_CROSSCOMPILING)
+  MESSAGE("Cross compiling for $ENV{DEB_HOST_GNU_TYPE}")
+  # get a wrapped pkg-config binary with adjusted PKG_CONFIG_LIBDIR
+  FIND_PROGRAM(DPKG_CROSS_PKG_CONFIG $ENV{DEB_HOST_GNU_TYPE}-pkg-config)
+  IF (DPKG_CROSS_PKG_CONFIG)
+     MESSAGE("Using wrapped pkg-config: ${DPKG_CROSS_PKG_CONFIG}")
+     # for UsePkgConfig
+     SET(PKGCONFIG_EXECUTABLE ${DPKG_CROSS_PKG_CONFIG})
+     # for FindPkgConfig
+     SET(PKG_CONFIG_EXECUTABLE ${DPKG_CROSS_PKG_CONFIG})
+   ELSE ()
+     MESSAGE("No wrapped pkg-config found. Setting PKG_CONFIG_LIBDIR to '/' to disable the compiled in default path.")
+     SET(ENV{PKG_CONFIG_LIBDIR} "/")
+  ENDIF ()
+ENDIF (CMAKE_CROSSCOMPILING)

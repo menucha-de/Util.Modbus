@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+ 
+%:
+	dh $@
+
+override_dh_auto_clean:
+override_dh_auto_configure:
+
+override_dh_builddeb:
+	dh_builddeb -- -Zgzip
+
+override_dh_auto_build:
+	ant -Dkeyfile=${keyfile} -Divy.resolver=$(RESOLVER) -Divy.url=$(IVY) -Divy.default.ivy.user.dir=/tmp -Divy.settings=ivysettings_remote.xml -Dapi.url=$(API) -Dplatform=$(JAVA_PLATFORM) -Djavac.debug=$(DEBUG) clean-all publish

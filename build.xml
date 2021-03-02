@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="havis.util.modbus" default="publish" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<property file="${basedir}/build.properties" />
+
+	<import>
+		<url url="${ivy.url}/ant/default.xml" />
+	</import>
+
+	<property name="src.swig.java" location="${build.dir}/swig/java" />
+
+	<target name="clean-cache" description="Cleans the ivy cache">
+		<clean-cache />
+	</target>
+
+	<target name="clean-all" description="Cleans the project">
+		<clean-all />
+	</target>
+
+	<target name="set-build-properties">
+		<check.build.properties />
+		<condition property="cmake.build.gnutype" value="x86_64-linux-gnu">
+			<and>
+				<isset property="platform" />
+				<matches pattern="^linux-amd64$" string="${platform}" />
+			</and>
+		</condition>
+		<condition property="cmake.build.gnutype" value="arm-linux-gnueabihf">
+			<and>
+				<isset property="platform" />
+				<matches pattern="^linux-arm$" string="${platform}" />
+			</and>
+		</condition>
+		<property name="cmake.build.type" value="RelWithDebInfo" />
+		<echo message="platform=${platform}" />
+		<echo message="cmake.build.gnutype=${cmake.build.gnutype}" />
+		<echo message="cmake.build.type=${cmake.build.type}" />
+	</target>
+
+	<target name="compile" depends="set-build-properties">
+		<exec executable="bash" failonerror="true">
+			<env key="CMAKE_BUILD_TYPE" value="${cmake.build.type}" />
+			<env key="DEB_HOST_GNU_TYPE" value="${cmake.build.gnutype}" />
+			<arg line="build.bash" />
+		</exec>
+		<compile>
+			<src path="${src.swig.java}" />
+		</compile>
+		<compile>
+			<src path="${src.main.dir}" />
+		</compile>
+	</target>
+
+	<target name="jar" depends="compile">
+		<module-info />
+		<jar-bin />
+		<jar-doc>
+			<packageset dir="${src.swig.java}" />
+		</jar-doc>
+		<jar-src>
+			<fileset dir="${src.swig.java}" />
+		</jar-src>
+	</target>
+
+	<target name="publish" depends="jar">
+		<publish jar="false" doc="false" src="false" app="false" />
+	</target>
+
+</project>

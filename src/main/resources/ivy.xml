@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+	<info organisation="havis/util" module="modbus-${platform}" default="true" />
+
+	<configurations>
+		<conf name="default" />
+		<conf name="module" />
+		<conf name="doc" />
+		<conf name="src" />
+	</configurations>
+
+	<publications>
+		<artifact name="havis.util.modbus" conf="default,module" />
+		<artifact name="havis.util.modbus-javadoc" conf="doc" />
+		<artifact name="havis.util.modbus-sources" conf="src" />
+	</publications>
+</ivy-module>

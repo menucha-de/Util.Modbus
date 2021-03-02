@@ -1,0 +1,2 @@
+target/libjava-modbus.so /usr/lib/
+target/havis.util.modbus.jar /usr/share/java/

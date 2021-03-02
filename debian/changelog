@@ -1,0 +1,34 @@
+libjava-modbus (2.7.0-1) unstable; urgency=medium
+
+  * Increases version
+
+ -- HARTING IT_SD <opensource@HARTING.com>  Thu, 04 Feb 2021 11:37:03 +0100
+
+
+libjava-modbus (2.6.1-0) unstable; urgency=medium
+
+  * Improve error handling
+
+ -- HARTING IT_SD <opensource@HARTING.com>  Mon, 16 Mar 2020 15:18:39 +0100
+
+
+libjava-modbus (2.6.0-0) unstable; urgency=medium
+
+  * Updates to 2.6
+  * Changes field processor and adds Rtu processor
+
+ -- HARTING IT_SD <opensource@HARTING.com>  Mon, 28 Oct 2019 15:18:39 +0100
+
+
+libjava-modbus (2.5.0-0) unstable; urgency=medium
+
+  * Updates to 2.5
+
+ -- HARTING IT_SD <opensource@HARTING.com>  Fri, 13 Sep 2019 11:46:00 +0200
+
+
+libjava-modbus (2.4.0-0) unstable; urgency=medium
+ 
+  * Initialization
+ 
+ -- HARTING IT_SD <opensource@HARTING.com>  Mon, 01 Jul 2019 16:20:35 +0200

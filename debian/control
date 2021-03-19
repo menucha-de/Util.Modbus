@@ -1,5 +1,5 @@
 Source: libjava-modbus
-Maintainer: HARTING IT_SD <opensource@HARTING.com>
+Maintainer: Menucha Team <info@menucha.de>
 Build-Depends: debhelper, cmake, swig, libmodbus-dev, pkg-config, openjdk-11-jdk-headless:amd64, default-jdk:amd64, ant:all, ivy:all, libjsch-java:all
 
 Package: libjava-modbus
